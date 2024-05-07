@@ -2,14 +2,14 @@
 // - Go to the API Access page.
 // - Copy the Public Token and paste it below.
 
-export const publicToken = %YOUR_PUBLIC_TOKEN%;
+export const publicToken = "public_ag24iyqHeg_UhaAZ";
 
 // Replace asset UUIDs:
 // - Go to the Asset Browser page.
 // - Double click on the Public folder to open it.
 // - Select a scene and copy the Asset UUID to replace it below.
 
-export const mainSceneUUID = %YOUR_MAIN_SCENE_UUID%;
-export const characterControllerSceneUUID = %YOUR_CHARACTER_CONTROLLER_SCENE_UUID%;
+export const mainSceneUUID = "8495a019-edba-4545-8c11-0defa049d7e5";
+export const characterControllerSceneUUID = "e7acb65a-3268-4ff3-96b9-a388a575d2a3";
 
 export const spawnPosition = [0,0,0];
