@@ -28,10 +28,10 @@ async function initApp() {
       sceneUUID: mainSceneUUID,
       canvas: canvas,
       createDefaultCamera: false,
-      startSimulation: "on-assets-loaded",
+      // startSimulation: "on-assets-loaded", 
   };
   await SDK3DVerse.joinOrStartSession(sessionParameters);
-
+  SDK3DVerse.engineAPI.startSimulation();
   // To spawn a character controller we need to instantiate the 
   // "characterControllerSceneUUID" subscene into our main scene.
   const characterController = await initThirdPersonController(
