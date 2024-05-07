@@ -8,4 +8,6 @@ Simple third person controller
 
 ![Third Person Character Controller](https://github.com/3dverse/sample-third-person-controller/blob/main/screenshot.png?raw=true)
 
-[Try it out](https://assurras.github.io/showroom-cassandre/)
+[Try it out](https://assurras.github.io/showrooms/)
+
+- [Showroom Cassandre S.](https://assurras.github.io/showrooms?scene=cassandre-s)

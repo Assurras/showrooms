@@ -1,17 +1,17 @@
 //------------------------------------------------------------------------------
 import {
   publicToken,
-  mainSceneUUID,
+  scenes,
   characterControllerSceneUUID,
   spawnPosition
 } from "../config.js";
 
 import { lockPointer } from "./utils.js";
 
-import { 
-  initDeviceDetection, 
+import {
+  initDeviceDetection,
   initControlKeySettings,
-  adjustDeviceSensitivity, 
+  adjustDeviceSensitivity,
   openSettingsModal,
   closeSettingsModal
 } from "./settings.js";
@@ -23,16 +23,20 @@ window.addEventListener("load", initApp);
 async function initApp() {
   const canvas = document.getElementById("display-canvas");
 
+  const sceneParam = new URLSearchParams(window.location.search).get("scene");
+  let sceneUUID = scenes[sceneParam];
+  sceneUUID = sceneUUID || scenes[Objkect.keys(scenes)[0]];
+
   const sessionParameters = {
       userToken: publicToken,
-      sceneUUID: mainSceneUUID,
+      sceneUUID,
       canvas: canvas,
       createDefaultCamera: false,
-      // startSimulation: "on-assets-loaded", 
+      // startSimulation: "on-assets-loaded",
   };
   await SDK3DVerse.joinOrStartSession(sessionParameters);
   SDK3DVerse.engineAPI.startSimulation();
-  // To spawn a character controller we need to instantiate the 
+  // To spawn a character controller we need to instantiate the
   // "characterControllerSceneUUID" subscene into our main scene.
   const characterController = await initThirdPersonController(
       characterControllerSceneUUID
@@ -97,12 +101,12 @@ async function initThirdPersonController(charCtlSceneUUID) {
 //------------------------------------------------------------------------------
 function handleClientDisconnection() {
   // Users are considered inactive after 5 minutes of inactivity and are
-  // kicked after 30 seconds of inactivity. Setting an inactivity callback 
+  // kicked after 30 seconds of inactivity. Setting an inactivity callback
   // with a 30 seconds cooldown allows us to open a popup when the user gets
   // disconnected.
   SDK3DVerse.setInactivityCallback(showInactivityPopup);
 
-  // The following does the same but in case the disconnection is 
+  // The following does the same but in case the disconnection is
   // requested by the server.
   SDK3DVerse.notifier.on("onConnectionClosed", showDisconnectedPopup);
 }
@@ -132,7 +136,7 @@ function initPointerLockEvents() {
 
   // Web browsers have a safety mechanism preventing the pointerlock to be
   // instantly requested after being naturally exited, if the user tries to
-  // relock the pointer too quickly, we wait a second before requesting 
+  // relock the pointer too quickly, we wait a second before requesting
   // pointer lock again.
   document.addEventListener('pointerlockerror', async () => {
       if (document.pointerLockElement === null) {

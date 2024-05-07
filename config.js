@@ -9,7 +9,9 @@ export const publicToken = "public_ag24iyqHeg_UhaAZ";
 // - Double click on the Public folder to open it.
 // - Select a scene and copy the Asset UUID to replace it below.
 
-export const mainSceneUUID = "8495a019-edba-4545-8c11-0defa049d7e5";
 export const characterControllerSceneUUID = "e7acb65a-3268-4ff3-96b9-a388a575d2a3";
 
 export const spawnPosition = [0,0,0];
+export const scenes = {
+    "cassandra-s": "8495a019-edba-4545-8c11-0defa049d7e5",
+}
