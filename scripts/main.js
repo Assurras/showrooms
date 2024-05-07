@@ -25,7 +25,7 @@ async function initApp() {
 
   const sceneParam = new URLSearchParams(window.location.search).get("scene");
   let sceneUUID = scenes[sceneParam];
-  sceneUUID = sceneUUID || scenes[Objkect.keys(scenes)[0]];
+  sceneUUID = sceneUUID || scenes[Object.keys(scenes)[0]];
 
   const sessionParameters = {
       userToken: publicToken,
