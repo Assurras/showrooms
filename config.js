@@ -14,4 +14,5 @@ export const characterControllerSceneUUID = "e7acb65a-3268-4ff3-96b9-a388a575d2a
 export const spawnPosition = [0,0,0];
 export const scenes = {
     "cassandra-s": "8495a019-edba-4545-8c11-0defa049d7e5",
+    "cassandra-s-no-walls": "d8115b29-de91-4937-80b0-6d5adfa40faa",
 }
