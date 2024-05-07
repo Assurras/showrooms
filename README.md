@@ -11,3 +11,4 @@ Simple third person controller
 [Try it out](https://assurras.github.io/showrooms/)
 
 - [Showroom Cassandre S.](https://assurras.github.io/showrooms?scene=cassandre-s)
+- [Showroom Cassandre S. No Walls](https://assurras.github.io/showrooms?scene=cassandra-s-no-walls)
