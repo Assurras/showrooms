@@ -9,7 +9,10 @@ export const publicToken = "public_ag24iyqHeg_UhaAZ";
 // - Double click on the Public folder to open it.
 // - Select a scene and copy the Asset UUID to replace it below.
 
-export const characterControllerSceneUUID = "e7acb65a-3268-4ff3-96b9-a388a575d2a3";
+// 3rd person controller scene
+//export const characterControllerSceneUUID = "e7acb65a-3268-4ff3-96b9-a388a575d2a3";
+// 1st person controller scene
+export const characterControllerSceneUUID = "d9656a45-c5b4-4bda-8876-2bd5aa8eaf16";
 
 export const spawnPosition = [0,0,0];
 export const scenes = {
