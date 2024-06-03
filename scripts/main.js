@@ -24,11 +24,12 @@ async function initApp() {
   const canvas = document.getElementById("display-canvas");
 
   const sceneParam = new URLSearchParams(window.location.search).get("scene");
-  let sceneUUID = scenes[sceneParam];
-  sceneUUID = sceneUUID || scenes[Object.keys(scenes)[0]];
+  let sceneConfig = scenes[sceneParam] || scenes[Object.keys(scenes)[0]];
+  const sceneUUID = sceneConfig.scene;
+  const userToken = sceneConfig.publicToken || publicToken;
 
   const sessionParameters = {
-      userToken: publicToken,
+      userToken,
       sceneUUID,
       canvas: canvas,
       createDefaultCamera: false,
@@ -37,10 +38,9 @@ async function initApp() {
   await SDK3DVerse.joinOrStartSession(sessionParameters);
   SDK3DVerse.engineAPI.startSimulation();
   // To spawn a character controller we need to instantiate the
-  // "characterControllerSceneUUID" subscene into our main scene.
-  const characterController = await initCharacterController(
-      characterControllerSceneUUID
-  );
+  // subscene into our main scene.
+  const characterSceneUUID = sceneConfig.character || characterControllerSceneUUID;
+  const characterController = await initCharacterController(characterSceneUUID);
 
   initDeviceDetection(characterController);
   adjustDeviceSensitivity(characterController);
@@ -85,12 +85,12 @@ async function initCharacterController(charCtlSceneUUID) {
   );
   const controllerChildren = await characterController.getChildren();
 
-  // Case of the 1st person conroller template app
-  const characterCamera = controllerChildren.find(c => c.isAttached("camera"));  
+  // Case of the 1st person controller template app
+  let characterCamera = controllerChildren.find(c => c.isAttached("camera"));
   let isThirdPersonController = !characterCamera;
   if (isThirdPersonController) {
-      // Case of the 3rd person conroller template app
-      characterCamera = controllerChildren.find(c => c.isAttached("camera"));
+      // Case of the 3rd person controller template app
+      characterCamera = children.find(c => c.isAttached("camera"));
   }
 
   // We need to assign the current client to the character controller

@@ -16,6 +16,19 @@ export const characterControllerSceneUUID = "d9656a45-c5b4-4bda-8876-2bd5aa8eaf1
 
 export const spawnPosition = [0,0,0];
 export const scenes = {
-    "cassandra-s": "8495a019-edba-4545-8c11-0defa049d7e5",
-    "cassandra-s-no-walls": "d8115b29-de91-4937-80b0-6d5adfa40faa",
+    "cassandra-s": {
+        scene: "8495a019-edba-4545-8c11-0defa049d7e5",
+        // You can specify a distinct character controller scene UUIS if the
+        // want to use a character controlelr distinct from the default one
+        // declared above.
+        // character: "",
+        // You can specify a distinct public token if the scene belongs to
+        // a project distinct from the project of the default public token
+        // declared above.
+        // publicToken: "",
+    },
+    "cassandra-s-no-walls": {
+        scene: "d8115b29-de91-4937-80b0-6d5adfa40faa",
+        character: "e7acb65a-3268-4ff3-96b9-a388a575d2a3"
+    },
 }
