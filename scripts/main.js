@@ -38,7 +38,7 @@ async function initApp() {
   SDK3DVerse.engineAPI.startSimulation();
   // To spawn a character controller we need to instantiate the
   // "characterControllerSceneUUID" subscene into our main scene.
-  const characterController = await initThirdPersonController(
+  const characterController = await initCharacterController(
       characterControllerSceneUUID
   );
 
@@ -52,7 +52,7 @@ async function initApp() {
 }
 
 //------------------------------------------------------------------------------
-async function initThirdPersonController(charCtlSceneUUID) {
+async function initCharacterController(charCtlSceneUUID) {
   // To spawn an entity we need to create an EntityTempllate and specify the
   // components we want to attach to it. In this case we only want a scene_ref
   // that points to the character controller scene.
@@ -77,25 +77,31 @@ async function initThirdPersonController(charCtlSceneUUID) {
   );
 
   // The character controller scene is setup as having two entities at its
-  // root: the third person controller and the third person camera.
+  // root: the character controller and the character camera.
   const children = await playerSceneEntity.getChildren();
   // Look for them by checking their components
-  const thirdPersonController = children.find((child) =>
+  const characterController = children.find((child) =>
     child.isAttached("script_map")
   );
-  const thirdPersonCamera = children.find((child) =>
-    child.isAttached("camera")
-  );
+  const controllerChildren = await characterController.getChildren();
 
-  // We need to assign the current client to the third person controller
-  // script which is attached to the thirdPersonController entity.
+  // Case of the 1st person conroller template app
+  const characterCamera = controllerChildren.find(c => c.isAttached("camera"));  
+  let isThirdPersonController = !characterCamera;
+  if (isThirdPersonController) {
+      // Case of the 3rd person conroller template app
+      characterCamera = controllerChildren.find(c => c.isAttached("camera"));
+  }
+
+  // We need to assign the current client to the character controller
+  // script which is attached to the character controller entity.
   // This allows the script to know which client inputs it should read.
-  SDK3DVerse.engineAPI.assignClientToScripts(thirdPersonController);
+  SDK3DVerse.engineAPI.assignClientToScripts(characterController);
 
-  // Finally set the third person camera as the main camera.
-  await SDK3DVerse.engineAPI.cameraAPI.setMainCamera(thirdPersonCamera);
+  // Finally set the character camera as the main camera.
+  await SDK3DVerse.engineAPI.cameraAPI.setMainCamera(characterCamera);
 
-  return thirdPersonController;
+  return characterController;
 }
 
 //------------------------------------------------------------------------------
