@@ -17,7 +17,7 @@ export const characterControllerSceneUUID = "d9656a45-c5b4-4bda-8876-2bd5aa8eaf1
 export const spawnPosition = [0,0,0];
 export const scenes = {
     "cassandra-s": {
-        scene: "8495a019-edba-4545-8c11-0defa049d7e5",
+        scene: "39524211-6f4b-4e77-9411-5c801b0675b4",
         // You can specify a distinct character controller scene UUIS if the
         // want to use a character controlelr distinct from the default one
         // declared above.
